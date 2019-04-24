@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 
 /**
- * A method that makes console loggind a lot prettier and easier.
+ * A method that makes console logging a lot prettier and easier.
  *
  * MIT License
  * Copyright (c) 2019 Malte Schink (malteschink.de)
