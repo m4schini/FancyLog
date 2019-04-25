@@ -37,17 +37,25 @@ public class Log {
     write(ANSI_RED_BACKGROUND + ANSI_BLACK + "CRITICAL: " + text + ANSI_RESET);
   }
   
+  static void divide() {
+    write(DIV_DASH);
+  }
+  
   static void loading(int part) {
     int percentage = part * 10;
+    
     StringBuilder dashes = new StringBuilder();
     for (int i = 0; i < part; i++) {
-      dashes.append("---");
+      dashes.append("###");
     }
-    System.out.print("\b\b\b\b\b\b\b\b\b\b" + "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
     System.out.print(
+            DELETE_LINE +
             LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + " > " +
             String.format("|%-30s| ", dashes) + percentage + "%");
+    if (percentage >= 100)
+      System.out.println();
   }
+  
   
   private static final String ANSI_BLACK = "\u001B[30m";
   private static final String ANSI_RESET = "\u001B[0m";
@@ -67,4 +75,9 @@ public class Log {
   private static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
   private static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
   private static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+  
+  private static final String DIV_DASH = "-------------------------------------";
+  private static final String DIV_PLUS = "+++++++++++++++++++++++++++++++++++++";
+  private static final String DIV_HSHT = "#####################################";
+  private static final String DELETE_LINE = "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 }

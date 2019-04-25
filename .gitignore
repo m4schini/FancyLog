@@ -91,4 +91,5 @@ buildNumber.properties
 hs_err_pid*
 
 /.idea/
+/Output/
 /Test.java
