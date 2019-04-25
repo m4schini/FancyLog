@@ -37,6 +37,18 @@ public class Log {
     write(ANSI_RED_BACKGROUND + ANSI_BLACK + "CRITICAL: " + text + ANSI_RESET);
   }
   
+  static void loading(int part) {
+    int percentage = part * 10;
+    StringBuilder dashes = new StringBuilder();
+    for (int i = 0; i < part; i++) {
+      dashes.append("---");
+    }
+    System.out.print("\b\b\b\b\b\b\b\b\b\b" + "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+    System.out.print(
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + " > " +
+            String.format("|%-30s| ", dashes) + percentage + "%");
+  }
+  
   private static final String ANSI_BLACK = "\u001B[30m";
   private static final String ANSI_RESET = "\u001B[0m";
   private static final String ANSI_RED = "\u001B[31m";
