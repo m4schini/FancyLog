@@ -1,4 +1,4 @@
-package com.github.malteschink.FancyLog;
+package com.github.m4schini.FancyLog;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
