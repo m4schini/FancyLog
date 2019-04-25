@@ -92,4 +92,4 @@ hs_err_pid*
 
 /.idea/
 /Output/
-/Test.java
+/src/main/java/Test.java
