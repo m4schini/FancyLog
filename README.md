@@ -18,7 +18,7 @@ Every line is printed with a timestamp: "HH:mm:ss > "
 Log.status(Object text);    //Standard println output
 Log.success(Object text);   //green text
 Log.warning(Object text);   //"Warning: " yellow text
-Log.error(Object text);     //"Error: " red text)
+Log.error(Object text);     //"Error: " red text
 Log.critical(Object text);  //"Critical: " Red background and black text   
 
 Log.divide();   //Prints: -------------------------------------
