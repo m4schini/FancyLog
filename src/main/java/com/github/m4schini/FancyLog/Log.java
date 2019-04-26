@@ -12,8 +12,7 @@ import java.time.format.DateTimeFormatter;
  * Copyright (c) 2019 Malte Schink (malteschink.de)
  */
 public class Log {
-  //This will not disable the loading methode
-  private static boolean enable_log = true;
+  public static boolean enable_log = true;
   public Log(boolean enable) {
     enable_log = enable;
   }
