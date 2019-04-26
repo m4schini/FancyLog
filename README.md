@@ -34,6 +34,6 @@ Log.loading(-1);  =>  |------------------------------| 0%
 ```
 You can easily turn logging on and off.
 ```java
-log.enableLog(true);        //enable log
-log.enableLog(false);       //disable log
+Log.enableLog(true);        //enable log
+Log.enableLog(false);       //disable log
 ```
