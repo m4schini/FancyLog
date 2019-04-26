@@ -12,48 +12,68 @@ import java.time.format.DateTimeFormatter;
  * Copyright (c) 2019 Malte Schink (malteschink.de)
  */
 public class Log {
-  public static boolean enable_log = true;
+  private static boolean enableLog = true;
+  
   public Log(boolean enable) {
-    enable_log = enable;
+    enableLog = enable;
+  }
+  public void enableLog(boolean enable) {
+    enableLog = enable;
   }
   
-  private void write(Object text) {
-    if (enable_log) {
+  private static void write(Object text) {
+    if (enableLog) {
       System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + " > " + text);
     }
   }
   
-  public void status(Object text) {
+  public static void status(Object text) {
     write(text);
   }
   
-  public void success(Object text) {
+  public static void success(Object text) {
     write(ANSI_GREEN + text + ANSI_RESET);
   }
   
-  public void error(Object text) {
+  public static void error(Object text) {
     write(ANSI_RED + "Error: " + text + ANSI_RESET);
   }
   
-  public void warning(Object text) {
+  public static void warning(Object text) {
     write(ANSI_YELLOW + "Warning: " + text + ANSI_RESET);
   }
   
-  public void critical(Object text) {
+  public static void critical(Object text) {
     write(ANSI_RED_BACKGROUND + ANSI_BLACK + "CRITICAL: " + text + ANSI_RESET);
   }
   
-  public void divide() {
+  public static void divide() {
     write(DIV_DASH);
   }
   
-  public void loading(int part) {
-    if (enable_log) {
-      int percentage = part * 10;
+  /**
+   * Prints a loadingbar to console. You can have a maximun of 10 10%-steps.
+   * If you have to abort the loading process input -1 or you have to print \n before the next line of output
+   *
+   * @param part 1-10 = 10% Steps | -1 abort
+   */
+  public static void loading(int part) {
+    boolean abort = false;
+    if (enableLog) {
+      
+      int percentage;
+      if (part == -1) {
+        abort = true;
+        percentage = 0;
+      } else {
+        percentage = part * 10;
+      }
       StringBuilder dashes = new StringBuilder();
   
-      for (int i = 0; i < part; i++) {
-        dashes.append("###");
+      if (abort) {
+        dashes.append(ANSI_RED + "------------------------------" + ANSI_RESET);
+      } else {
+        dashes.append("###".repeat(part));
       }
       
       System.out.print(
@@ -61,7 +81,7 @@ public class Log {
               LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + " > " +
               String.format("|%-30s| ", dashes) + percentage + "%");
   
-      if (percentage >= 100)
+      if (percentage >= 100 || part == -1)
         System.out.println();
     }
   }
