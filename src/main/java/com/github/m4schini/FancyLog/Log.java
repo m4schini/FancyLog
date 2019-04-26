@@ -17,7 +17,18 @@ public class Log {
   public Log(boolean enable) {
     enableLog = enable;
   }
+  
   public void enableLog(boolean enable) {
+    enableLog = enable;
+  }
+  public void enableLog(boolean enable, boolean log_change) {
+    if (log_change) {
+      if (enable) {
+        warning("Log is now enabled");
+      } else {
+        warning("Log is now disabled");
+      }
+    }
     enableLog = enable;
   }
   
@@ -58,22 +69,19 @@ public class Log {
    * @param part 1-10 = 10% Steps | -1 abort
    */
   public static void loading(int part) {
-    boolean abort = false;
     if (enableLog) {
-      
       int percentage;
-      if (part == -1) {
-        abort = true;
-        percentage = 0;
-      } else {
-        percentage = part * 10;
-      }
       StringBuilder dashes = new StringBuilder();
-  
-      if (abort) {
-        dashes.append(ANSI_RED + "------------------------------" + ANSI_RESET);
-      } else {
-        dashes.append("###".repeat(part));
+      
+      switch (part) {
+        case -1:
+          percentage = 0;
+          dashes.append(ANSI_RED + "------------------------------" + ANSI_RESET);
+          break;
+        default:
+          percentage = part * 10;
+          dashes.append("###".repeat(part));
+          break;
       }
       
       System.out.print(
