@@ -6,7 +6,9 @@ import java.time.format.DateTimeFormatter;
 
 
 /**
- * A method that makes console logging a lot prettier and easier.
+ * Super simple library for super easy console logging
+ * @author m4schini
+ * @version 2.1.1
  *
  * MIT License
  * Copyright (c) 2019 Malte Schink (malteschink.de)
@@ -14,8 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class Log {
   private static boolean enableLog = true;
   
-  public Log(boolean enable) {
-    enableLog = enable;
+  public Log() {
   }
   
   public void enableLog(boolean enable) {
@@ -24,12 +25,13 @@ public class Log {
   public void enableLog(boolean enable, boolean log_change) {
     if (log_change) {
       if (enable) {
+        enableLog = true;
         warning("Log is now enabled");
       } else {
         warning("Log is now disabled");
+        enableLog = false;
       }
     }
-    enableLog = enable;
   }
   
   private static void write(Object text) {
