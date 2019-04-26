@@ -26,10 +26,9 @@ Log.divide();   //Prints: -------------------------------------
 You can also print a loadingbar if your programm, well, needs to load something...
 This was propably kind of obvious.
 ```java
+//Range: 0-10
 Log.loading(10);  =>  |##############################| 100%
-Log.loading(5);   =>  |###############               |  50%
-Log.loading(1);   =>  |###                           |  10%
-Log.loading(1);   =>  |                              |  0%
+Log.loading(0);   =>  |                              |  0%
 
 Log.loading(-1);  =>  |------------------------------| 0%
 ```
