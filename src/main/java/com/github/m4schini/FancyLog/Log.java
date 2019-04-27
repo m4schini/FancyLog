@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 /**
  * Super simple library for super easy console logging
  * @author m4schini
- * @version 2.1.1
  *
  * MIT License
  * Copyright (c) 2019 Malte Schink (malteschink.de)
@@ -68,7 +67,7 @@ public class Log {
    * Prints a loadingbar to console. You can have a maximun of 10 10%-steps.
    * If you have to abort the loading process input -1 or you have to print \n before the next line of output
    *
-   * @param part 1-10 = 10% Steps | -1 abort
+   * @param part 0-10 = 10% Steps | -1 = abort
    */
   public static void loading(int part) {
     if (enableLog) {
