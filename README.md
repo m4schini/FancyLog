@@ -7,7 +7,7 @@ Include the Maven artifact:
 <dependency>
     <groupId>com.github.m4schini</groupId>
     <artifactId>FancyLog</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.2</version>
 </dependency>
 ```
 Or include the [JAR](https://github.com/m4schini/FancyLog/releases) in your project.
