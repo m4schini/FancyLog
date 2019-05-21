@@ -23,6 +23,9 @@ Log.critical(Object text);  //"Critical: " Red background and black text
 
 Log.divide();   //Prints: -------------------------------------
 ```
+![In Console Looks](https://github.com/m4schini/FancyLog/blob/master/FancyLogExample.PNG)
+
+
 You can also print a loadingbar if your programm, well, needs to load something...
 This was propably kind of obvious.
 ```java
