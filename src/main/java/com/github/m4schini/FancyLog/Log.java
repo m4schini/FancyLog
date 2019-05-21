@@ -42,7 +42,7 @@ public class Log {
    * @param input content of console output
    */
   public static void success(Object input) {
-    write(ANSI_GREEN + input + ANSI_RESET);
+    write(GREEN + input + RESET);
   }
   
   /**
@@ -50,7 +50,7 @@ public class Log {
    * @param input content of console output
    */
   public static void error(Object input) {
-    write(ANSI_RED + "Error: " + input + ANSI_RESET);
+    write(RED + "Error: " + input + RESET);
   }
   
   /**
@@ -58,7 +58,7 @@ public class Log {
    * @param input content of console output
    */
   public static void warning(Object input) {
-    write(ANSI_YELLOW + "Warning: " + input + ANSI_RESET);
+    write(YELLOW + "Warning: " + input + RESET);
   }
   
   /**
@@ -66,7 +66,7 @@ public class Log {
    * @param input content of console output
    */
   public static void critical(Object input) {
-    write(ANSI_RED_BACKGROUND + ANSI_BLACK + "CRITICAL: " + input + ANSI_RESET);
+    write(RED_BG + BLACK + "CRITICAL: " + input + RESET);
   }
   
   /**
@@ -75,8 +75,8 @@ public class Log {
    */
   public static void exception(Exception exception) {
     error("\b\b in: " + exception.getStackTrace()[0]);
-    error("\b\b was caused by: " + ANSI_RESET + exception.getCause());
-    error(ANSI_RESET + exception.toString());
+    error("\b\b was caused by: " + RESET + exception.getCause());
+    error(RESET + exception.toString());
   }
   
   
@@ -111,7 +111,7 @@ public class Log {
       switch (part) {
         case -1:
           percentage = 0;
-          dashes.append(ANSI_RED + "------------------------------" + ANSI_RESET);
+          dashes.append(RED + "------------------------------" + RESET);
           break;
         default:
           percentage = part * 10;
@@ -129,25 +129,25 @@ public class Log {
     }
   }
   
-  private static final String ANSI_RESET = "\u001B[0m";
-  private static final String ANSI_BLACK = "\u001B[30m";
-  private static final String ANSI_GREY = "\u001B[37m";
-  private static final String ANSI_RED = "\u001B[31m";
-  private static final String ANSI_GREEN = "\u001B[32m";
-  private static final String ANSI_YELLOW = "\u001B[33m";
-  private static final String ANSI_BLUE = "\u001B[34m";
-  private static final String ANSI_PURPLE = "\u001B[35m";
-  private static final String ANSI_CYAN = "\u001B[36m";
-  private static final String ANSI_WHITE = "\u001B[37m";
+  private static final String RESET = "\u001B[0m";
+  private static final String BLACK = "\u001B[30m";
+  private static final String GREY = "\u001B[37m";
+  private static final String RED = "\u001B[31m";
+  private static final String GREEN = "\u001B[32m";
+  private static final String YELLOW = "\u001B[33m";
+  private static final String BLUE = "\u001B[34m";
+  private static final String PURPLE = "\u001B[35m";
+  private static final String CYAN = "\u001B[36m";
+  private static final String WHITE = "\u001B[37m";
   
-  private static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-  private static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-  private static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-  private static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-  private static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
-  private static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-  private static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-  private static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+  private static final String BLACK_BG = "\u001B[40m";
+  private static final String RED_BG = "\u001B[41m";
+  private static final String GREEN_BG = "\u001B[42m";
+  private static final String YELLOW_BG = "\u001B[43m";
+  private static final String BLUE_BG = "\u001B[44m";
+  private static final String PURPLE_BG = "\u001B[45m";
+  private static final String CYAN_BG = "\u001B[46m";
+  private static final String WHITE_BG = "\u001B[47m";
   
   private static final String DIV_DASH = "-------------------------------------";
   private static final String DIV_PLUS = "+++++++++++++++++++++++++++++++++++++";
