@@ -13,59 +13,95 @@ import java.time.format.DateTimeFormatter;
  * Copyright (c) 2019 Malte Schink (malteschink.de)
  */
 public class Log {
+  
+  /**
+   * Settings
+   */
   private static boolean enableLog = true;
+  private static String TIMESTAMP_PATTERN = "HH:mm:ss:SSS > ";
   
-  public Log() {
-  }
-  
-  public void enableLog(boolean enable) {
+  /**
+   * Turn logging to console on or off
+   * @param enable true = on | false = off
+   */
+  public static void enableLog(boolean enable) {
     enableLog = enable;
   }
-  public void enableLog(boolean enable, boolean log_change) {
-    if (log_change) {
-      if (enable) {
-        enableLog = true;
-        warning("Log is now enabled");
-      } else {
-        warning("Log is now disabled");
-        enableLog = false;
-      }
-    }
+  
+  
+  /**
+   * Prints input with timestamp
+   * @param input content of console output
+   */
+  public static void status(Object input) {
+    write(input);
   }
   
-  private static void write(Object text) {
-    if (enableLog) {
-      System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + " > " + text);
-    }
+  /**
+   * Prints input in green with timestamp
+   * @param input content of console output
+   */
+  public static void success(Object input) {
+    write(ANSI_GREEN + input + ANSI_RESET);
   }
   
-  public static void status(Object text) {
-    write(text);
+  /**
+   * Prints input in red with timestamp and "Error: " at the start
+   * @param input content of console output
+   */
+  public static void error(Object input) {
+    write(ANSI_RED + "Error: " + input + ANSI_RESET);
   }
   
-  public static void success(Object text) {
-    write(ANSI_GREEN + text + ANSI_RESET);
+  /**
+   * Prints input in yelloq with timestamp and "Warning: " at the start
+   * @param input content of console output
+   */
+  public static void warning(Object input) {
+    write(ANSI_YELLOW + "Warning: " + input + ANSI_RESET);
   }
   
-  public static void error(Object text) {
-    write(ANSI_RED + "Error: " + text + ANSI_RESET);
+  /**
+   * Prints input with red background, timestamp and "CRITICAL: " at the start
+   * @param input content of console output
+   */
+  public static void critical(Object input) {
+    write(ANSI_RED_BACKGROUND + ANSI_BLACK + "CRITICAL: " + input + ANSI_RESET);
   }
   
-  public static void warning(Object text) {
-    write(ANSI_YELLOW + "Warning: " + text + ANSI_RESET);
+  /**
+   * Prints error, location and cause
+   * @param exception thrown exception
+   */
+  public static void exception(Exception exception) {
+    error("\b\b in: " + exception.getStackTrace()[0]);
+    error("\b\b was caused by: " + ANSI_RESET + exception.getCause());
+    error(ANSI_RESET + exception.toString());
   }
   
-  public static void critical(Object text) {
-    write(ANSI_RED_BACKGROUND + ANSI_BLACK + "CRITICAL: " + text + ANSI_RESET);
-  }
   
+  /**
+   * Prints dashed line to console
+   */
   public static void divide() {
     write(DIV_DASH);
   }
   
   /**
+   * Checks if logging is enabled and prints Log to console if enabled
+   * @param input content of user specified console output
+   */
+  private static void write(Object input) {
+    if (enableLog) {
+      System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN)) + input);
+    }
+  }
+  
+  /**
    * Prints a loadingbar to console. You can have a maximun of 10 10%-steps.
    * If you have to abort the loading process input -1 or you have to print \n before the next line of output
+   * @implNote This is not dependend on the "write" method
+   * @implNote This is a console-only method
    *
    * @param part 0-10 = 10% Steps | -1 = abort
    */
@@ -87,7 +123,7 @@ public class Log {
       
       System.out.print(
               DELETE_LINE +
-              LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + " > " +
+              LocalDateTime.now().format(DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN)) +
               String.format("|%-30s| ", dashes) + percentage + "%");
   
       if (percentage >= 100 || part == -1)
@@ -95,8 +131,9 @@ public class Log {
     }
   }
   
-  private static final String ANSI_BLACK = "\u001B[30m";
   private static final String ANSI_RESET = "\u001B[0m";
+  private static final String ANSI_BLACK = "\u001B[30m";
+  private static final String ANSI_GREY = "\u001B[37m";
   private static final String ANSI_RED = "\u001B[31m";
   private static final String ANSI_GREEN = "\u001B[32m";
   private static final String ANSI_YELLOW = "\u001B[33m";
@@ -117,5 +154,5 @@ public class Log {
   private static final String DIV_DASH = "-------------------------------------";
   private static final String DIV_PLUS = "+++++++++++++++++++++++++++++++++++++";
   private static final String DIV_HSHT = "#####################################";
-  private static final String DELETE_LINE = "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+  private static final String DELETE_LINE = "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 }
