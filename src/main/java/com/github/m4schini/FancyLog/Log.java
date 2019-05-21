@@ -100,8 +100,6 @@ public class Log {
   /**
    * Prints a loadingbar to console. You can have a maximun of 10 10%-steps.
    * If you have to abort the loading process input -1 or you have to print \n before the next line of output
-   * @implNote This is not dependend on the "write" method
-   * @implNote This is a console-only method
    *
    * @param part 0-10 = 10% Steps | -1 = abort
    */
