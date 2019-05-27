@@ -18,7 +18,7 @@ public class Log {
    * Settings
    */
   private static boolean enableLog = true;
-  private static String TIMESTAMP_PATTERN = "HH:mm:ss:SSS > ";
+  private static String TIMESTAMP_PATTERN = "yyyy-MM-dd'T'HH:mm:ss:SSS'Z' > ";
   
   /**
    * Turn logging to console on or off
@@ -97,6 +97,10 @@ public class Log {
     }
   }
   
+  public static void setTimestampPattern(String pattern) {
+    TIMESTAMP_PATTERN = pattern;
+  }
+  
   /**
    * Prints a loadingbar to console. You can have a maximun of 10 10%-steps.
    * If you have to abort the loading process input -1 or you have to print \n before the next line of output
@@ -118,8 +122,11 @@ public class Log {
           dashes.append("###".repeat(part));
           break;
       }
-      
-      System.out.print(
+      StringBuilder deleteTimestamp = new StringBuilder();
+      for (int i = 0; i <= TIMESTAMP_PATTERN.length(); i++) {
+        deleteTimestamp.append("\b");
+      }
+      System.out.print(deleteTimestamp +
               DELETE_LINE +
               LocalDateTime.now().format(DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN)) +
               String.format("|%-30s| ", dashes) + percentage + "%");
@@ -152,5 +159,5 @@ public class Log {
   private static final String DIV_DASH = "-------------------------------------";
   private static final String DIV_PLUS = "+++++++++++++++++++++++++++++++++++++";
   private static final String DIV_HSHT = "#####################################";
-  private static final String DELETE_LINE = "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+  private static final String DELETE_LINE = "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 }
