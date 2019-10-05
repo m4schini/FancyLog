@@ -1,4 +1,7 @@
 # FancyLog
+
+![GitHub](https://img.shields.io/github/license/m4schini/FancyLog?style=flat-square) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/m4schini/FancyLog?style=flat-square) ![Maven Central](https://img.shields.io/maven-central/v/com.github.m4schini/FancyLog?style=flat-square)
+
 Super simple library for super easy console logging
 
 ## Installation
